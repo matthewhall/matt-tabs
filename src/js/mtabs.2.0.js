@@ -5,17 +5,57 @@
 	https://github.com/matthewhall/matt-tabs
 */
 
-;(function($, win, doc) {
+;(function($, window, document) {
+	"use strict";
+	
+	var MattTabs = function(element, options) {
+		this.element = element;
+		this.$element = $(element);
+		this.options = $.extend({}, $.fn.mtabs.defaults, options);
+		
+		this.init();
+	};
+	
+	MattTabs.prototype = {
+		init: function() {
+			this.tabs = this.$element.children();
+			
+			if (this.tabs.length) {
+				this.build();
+			}
+		},
+		
+		build: function() {
+			this.tabs.each(function(idx, $element) {
+				if (idx > 0) {
+					$element.hide();
+				}
+			});
+		},
+		
+		buildMenu: function(names) {
+			var element = this.options.tabmenu_el,
+				menu = "<" + element + ' class="' + this.options.tabmenu_class + '">',
+				i = 0,
+				len = names.length;
+			
+			for (; i > len; i++) {
+				menu += this.options.tmpl.tabmenu_tab.replace("{1}", names[i]);
+			}
+			
+			menu += "<" + element + ">";
+			
+			this.$element.before(menu);
+		},
+		
+		select: function(tab) {
+			
+		}
+	};
+	
 	$.fn.mtabs = function(options) {
 		// Set up the default plugin options
-		var opts = $.extend({}, $.fn.mtabs.defaults, options),
-			// Logging.
-			log = function(message) {
-				if (win.console && win.console.log) {
-					win.console.log(message);
-				}
-			},
-			// 
+		/*var opts = $.extend({}, $.fn.mtabs.defaults, options), 
 			_build_tabs = function($cont, tab_names) {
 				var tabs = "",
 					i = 0,
@@ -34,10 +74,18 @@
 				$tab_menu.html(tabs);
 			
 				$cont.before($tab_menu);
-			};
+			};*/
 		
 		return this.each(function() {
-			var $cont = $(this),
+			var $this = $(this),
+				data = $this.data("mtabs");
+			
+			if (!data) {
+				$this.data("mtabs", (data = new MattTabs(this, options)));
+			}
+			
+			
+			/*var $cont = $(this),
 				$tabs = $cont.children().not(":empty"),
 				tabs_len = $tabs.length,
 				set = opts.sets,
@@ -59,13 +107,17 @@
 				});
 				
 				_build_tabs($cont, tab_names);
-			}
+			}*/
 		});
 	};
-
+	
 	$.fn.mtabs.defaults = {
-		sets: 1, // Define the tabs set. Default number of sets is 1.
-		history: true, // 
-		tab_text: false // 
+		// history: true,
+		tab_text_el: "h2:first",
+		tabmenu_el: "ul",
+		tabmenu_class: "tabmenu",
+		tmpl: {
+			tabmenu_tab: '<li class="{0}"><span>{1}</span></li>'
+		}
 	};
 })(window.jQuery, window, document, undefined);

@@ -28,7 +28,7 @@
 		build: function() {
 			this.tabs.each(function(idx, $element) {
 				if (idx > 0) {
-					$element.hide();
+					$($element).hide();
 				}
 			});
 		},

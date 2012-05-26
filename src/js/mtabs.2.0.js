@@ -11,6 +11,7 @@
 	var MattTabs = function(element, options) {
 		this.element = element;
 		this.$element = $(element);
+		this.tabs = this.$element.children();
 		this.options = $.extend({}, $.fn.mtabs.defaults, options);
 		
 		this.init();
@@ -18,64 +19,72 @@
 	
 	MattTabs.prototype = {
 		init: function() {
-			this.tabs = this.$element.children();
-			
 			if (this.tabs.length) {
 				this.build();
+				this.buildTabMenu();
 			}
 		},
 		
 		build: function() {
-			this.tabs.each(function(idx, $element) {
+			var name,
+				self = this,
+				tab_text_el = this.options.tab_text_el;
+			
+			this.tab_names = [];
+			
+			this.tabs.each(function(idx, element) {
+				var $element = $(element);
+				
+				name = tab_text_el ? $element.find(tab_text_el).hide().text() : $element.children().filter(function() {
+						return (/h[1-6]/i).test($(this)[0].nodeName);
+					})
+					.filter(":first").hide().text();
+				
+				self.tab_names.push(name);
+				
 				if (idx > 0) {
-					$($element).hide();
+					$element.hide();
 				}
 			});
 		},
 		
-		buildMenu: function(names) {
-			var element = this.options.tabmenu_el,
-				menu = "<" + element + ' class="' + this.options.tabmenu_class + '">',
+		buildTabMenu: function() {
+			var self = this,
+				element = this.options.tabmenu_el,
+				tab_names = this.tab_names,
+				html = "<" + element + ' class="' + this.options.tabmenu_class + '">',
+				tab_class,
 				i = 0,
-				len = names.length;
+				len = tab_names.length,
+				
+				buildTabs = function() {
+					var args = arguments;
+					
+					return self.options.tmpl.tabmenu_tab.replace(/\{[0-9]\}/g, function(str) {
+						// Replace non-numeric chars and convert to number.
+						var num = Number(str.replace(/\D/g, ""));
+							
+						return args[num] || "";
+					});
+				};
 			
-			for (; i > len; i++) {
-				menu += this.options.tmpl.tabmenu_tab.replace("{1}", names[i]);
+			for (; i < len; i++) {
+				tab_class = "tab-" + (i + 1);
+				
+				html += buildTabs(tab_class, tab_names[i]);
 			}
 			
-			menu += "<" + element + ">";
+			html += "</" + element + ">";
 			
-			this.$element.before(menu);
+			this.$element.before(html);
 		},
 		
-		select: function(tab) {
+		selectTab: function() {
 			
 		}
 	};
 	
 	$.fn.mtabs = function(options) {
-		// Set up the default plugin options
-		/*var opts = $.extend({}, $.fn.mtabs.defaults, options), 
-			_build_tabs = function($cont, tab_names) {
-				var tabs = "",
-					i = 0,
-					len = tab_names.length,
-					$tab_menu = $('<ul class="tabs-menu" />').delegate("li", "click", function(e) {
-						var $this = $(this),
-							idx = $this.index();
-						
-						$cont.children().hide().end().children(":eq(" + idx + ")").show();
-					});
-			
-				for (; i < len; i++) {
-					tabs += '<li class="tab tab-' + i + '">' + tab_names[i] + '</li>';
-				}
-			
-				$tab_menu.html(tabs);
-			
-				$cont.before($tab_menu);
-			};*/
-		
 		return this.each(function() {
 			var $this = $(this),
 				data = $this.data("mtabs");
@@ -83,39 +92,14 @@
 			if (!data) {
 				$this.data("mtabs", (data = new MattTabs(this, options)));
 			}
-			
-			
-			/*var $cont = $(this),
-				$tabs = $cont.children().not(":empty"),
-				tabs_len = $tabs.length,
-				set = opts.sets,
-				tab_names = [];
-			
-			if (tabs_len) {
-				$.each($tabs, function(idx, $tab) {
-					var $tab = $($tab),
-						tab_text = tab_text ? $(tab_text).text() : $tab.children().filter(function() {
-							return /h[1-6]/i.test($(this)[0].nodeName);
-						})
-						.filter(":first").hide().text();
-					
-					tab_names.push(tab_text);
-					
-					if (idx > 0) {
-						$tab.hide();
-					}
-				});
-				
-				_build_tabs($cont, tab_names);
-			}*/
 		});
 	};
 	
 	$.fn.mtabs.defaults = {
 		// history: true,
 		tab_text_el: "h2:first",
+		tabmenu_class: "tabs-menu",
 		tabmenu_el: "ul",
-		tabmenu_class: "tabmenu",
 		tmpl: {
 			tabmenu_tab: '<li class="{0}"><span>{1}</span></li>'
 		}

@@ -8,7 +8,10 @@
 	width: 50%;
 }
 
-.set, .panel {margin: 0 0 10px;}
+.set,
+.panel {
+	margin: 0 0 10px;
+}
 
 
 /*
@@ -23,7 +26,7 @@
 	padding: 0 10px;
 }
 
-.tab {
+.tabs-menu li {
 	display: inline-block;
 	margin: 0 3px -1px 0;
 	border: 1px solid #ccc;

@@ -112,6 +112,9 @@
 			// idx = typeof idx === "string" ? idx.replace(/\D/g, "") : idx;
 			
 			this.tabs.hide().filter(":eq(" + idx + ")").show();
+			
+			// Switch tab class names.
+			this.$tab_menu.children().removeClass("livetab").filter(":eq(" + idx + ")").addClass("livetab");
 		}
 	};
 	
@@ -131,7 +134,6 @@
 	
 	// Default options.
 	$.fn.mtabs.defaults = {
-		// history: true,
 		tab_text_el: "h2:first",
 		tabmenu_class: "tabs-menu",
 		tabmenu_el: "ul",

@@ -168,6 +168,6 @@
 		tmpl: { // Templates used for building HTML structures.
 			tabsmenu_tab: '<li class="{0}"><span>{1}</span></li>'
 		},
-		onTabSwitch: null // Callback when tab switch occurs.
+		onTabSwitch: null // Optional callback function to be executed when tab switch occurs. Receives the index of the selected tab as an argument. Default is no callback.
 	};
 })(window.jQuery, window, document, undefined);

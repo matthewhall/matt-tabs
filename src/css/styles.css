@@ -8,7 +8,10 @@
 	width: 50%;
 }
 
-.set, .panel {margin: 0 0 10px;}
+.set,
+.panel {
+	margin: 0 0 10px;
+}
 
 
 /*
@@ -23,8 +26,10 @@
 	padding: 0 10px;
 }
 
-.tab {
+.tabs-menu li {
 	display: inline-block;
+	*display: inline;
+	zoom: 1;
 	margin: 0 3px -1px 0;
 	border: 1px solid #ccc;
 	border-radius: 3px 3px 0 0;
@@ -34,7 +39,7 @@
 	position: relative;
 }
 
-.live-tab {
+.tabs-menu .active-tab {
 	background-color: #fff;
 	border-bottom: 0;
 	padding-bottom: 7px;

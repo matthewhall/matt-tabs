@@ -4,50 +4,27 @@ A simple jQuery plugin for creating tabbed interfaces.
 
 ## Usage
 
+### Basic
 Basic usage is simple:
 
 ```javascript
 $(".container").mtabs();
 ```
+Converts all the children of .container into tabs using the first h2 element of each as the text for the tab name.
 
-##Options
+### Options
+* **container_class**: Specifies class name(s) applied to the overall wrapping element.
+* **tabs_container_class**: Specifies class name(s) applied to tabs content wrapping element.
+* **active_tab_class**: Specifies class name for currently active tab.
+* **tab_text_el**: Specifies element to generate the text from for each tab name.
+* **tabmenu_class**: Specifies class name(s) applied to the tabs menu element.
+* **tabsmenu_el**: Specifies element to use as a wrapper for tabs menu items.
+* **tmpl**: Templates used for building HTML structures.
 
-###Sets
-
-You can define multiple sets of tabs in one container. Use the "sets" option like so:
-
-```javascript
-$(".container").mtabs({
-	sets: [1, 5]
-});
-```
-
-This will define one set of tabs from child elements 1 to 4 and the other from child elements 5 to the last. Default is one set only.
-
-###Tab Name
-
-Redefine the element text used for the tab name like so:
-
-```javascript
-$(".container").mtabs({
-	tabName: ".heading:first"
-});
-```
-
-The default is the first h2 text.
-
-###Tab Content
-
-Redefine the element content used for the tab content:
-
-```javascript
-$(".container").mtabs({
-	tabContent: ".body"
-});
-```
+## Requires
+* jQuery 1.7+
 
 ## Browser Support
-
 * Chrome
 * Firefox 3.6+
 * Safari 4+

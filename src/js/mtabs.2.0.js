@@ -9,32 +9,48 @@
 	"use strict";
 	
 	var MattTabs = function(element, options) {
-		this.element = element;
-		this.$element = $(element);
-		this.tabs = this.$element.children();
-		this.options = $.extend({}, $.fn.mtabs.defaults, options);
+		var self = this;
 		
-		this.init();
+		self.element = element;
+		self.$element = $(element);
+		self.tabs = self.$element.children();
+		self.options = $.extend({}, $.fn.mtabs.defaults, options);
+		
+		self.init();
 	};
 	
 	MattTabs.prototype = {
 		init: function() {
-			if (this.tabs.length) {
-				this.build();
-				this.buildTabMenu();
+			var self = this;
+			
+			if (self.tabs.length) {
+				// Build.
+				self.build();
+				self.buildTabMenu();
 			}
 		},
 		
 		build: function() {
-			var name,
-				self = this,
-				tab_text_el = this.options.tab_text_el;
+			var self = this,
+				opts = self.options,
+				tab_text_el = opts.tab_text_el,
+				container_class = opts.container_class;
 			
-			this.tab_names = [];
+			// Array to collect tab names.
+			self.tab_names = [];
 			
-			this.tabs.each(function(idx, element) {
-				var $element = $(element);
+			// Wrap everything in a container element.
+			self.$wrapper = self.$element.wrapInner('<div class="' + container_class + '" />').find("." + container_class);
+			
+			// Wrap all tabs in a container element.
+			self.tabs.wrapAll('<div class="' + opts.tabs_container_class + '" />');
+			
+			self.tabs.each(function(idx, element) {
+				var name,
+					$element = $(element);
 				
+				// Use the set element for the tab text or get
+				// the first heading element and use that.
 				name = tab_text_el ? $element.find(tab_text_el).hide().text() : $element.children().filter(function() {
 						return (/h[1-6]/i).test($(this)[0].nodeName);
 					})
@@ -48,9 +64,10 @@
 		// appends it to the relevant page of the page.
 		buildTabMenu: function() {
 			var self = this,
-				element = this.options.tabmenu_el,
-				tab_names = this.tab_names,
-				html = "<" + element + ' class="' + this.options.tabmenu_class + '">',
+				opts = self.options,
+				element = opts.tabsmenu_el,
+				tab_names = self.tab_names,
+				html = "<" + element + ' class="' + opts.tabsmenu_class + '">',
 				tab_class,
 				i = 0,
 				len = tab_names.length,
@@ -61,7 +78,7 @@
 					var args = arguments;
 					
 					// Replace any {0} placeholders with any text passed in as arguments.
-					return self.options.tmpl.tabmenu_tab.replace(/\{[0-9]\}/g, function(str) {
+					return opts.tmpl.tabsmenu_tab.replace(/\{[0-9]\}/g, function(str) {
 						// Replace non-numeric chars and convert to number.
 						var num = Number(str.replace(/\D/g, ""));
 						
@@ -84,14 +101,14 @@
 			
 			// Append it before the element and assign
 			// to the prototype chain for use later.
-			this.$tab_menu = $(html).insertBefore(this.$element);
+			self.$tabs_menu = $(html).prependTo(self.$wrapper);
 			
 			// Get nodeName of the tab menu children
 			// so we can delegate the click event to them.
-			child_node_name = this.$tab_menu.find(":first")[0].nodeName.toLowerCase();
+			child_node_name = self.$tabs_menu.find(":first")[0].nodeName.toLowerCase();
 			
 			// Delegate click evens to each tab.
-			this.$tab_menu.on("click", child_node_name, function(e) {
+			self.$tabs_menu.on("click", child_node_name, function(e) {
 					var $this = $(this),
 						// Use the tab's index to associate it with it's content.
 						idx = $this.index();
@@ -103,18 +120,21 @@
 					e.preventDefault();
 				})
 				// Select and show the first tab.
-				.find(":first")
-				.trigger("click");
+				.find(":first").trigger("click");
 		},
 		
 		// Toggle relevant tab based on the index passed in.
 		selectTab: function(idx) {
+			var self = this,
+				active_tab_class = self.options.active_tab_class;
+			
 			// idx = typeof idx === "string" ? idx.replace(/\D/g, "") : idx;
 			
-			this.tabs.hide().filter(":eq(" + idx + ")").show();
+			// Show the relevant tab content.
+			self.tabs.hide().filter(":eq(" + idx + ")").show();
 			
 			// Switch tab class names.
-			this.$tab_menu.children().removeClass("livetab").filter(":eq(" + idx + ")").addClass("livetab");
+			self.$tabs_menu.children().removeClass(active_tab_class).filter(":eq(" + idx + ")").addClass(active_tab_class);
 		}
 	};
 	
@@ -134,11 +154,14 @@
 	
 	// Default options.
 	$.fn.mtabs.defaults = {
-		tab_text_el: "h2:first",
-		tabmenu_class: "tabs-menu",
-		tabmenu_el: "ul",
-		tmpl: {
-			tabmenu_tab: '<li class="{0}"><span>{1}</span></li>'
+		container_class: "tabs", // Specifies class name(s) applied to the overall wrapping element.
+		tabs_container_class: "tabs-content", // Specifies class name(s) applied to tabs content wrapping element.
+		active_tab_class: "active-tab", // Specifies class name for currently active tab.
+		tab_text_el: "h2:first", // Specifies element to generate the text from for each tab name.
+		tabsmenu_class: "tabs-menu", // Specifies class name(s) applied to the tabs menu element.
+		tabsmenu_el: "ul", // Specifies element to use as a wrapper for tabs menu items.
+		tmpl: { // Templates used for building HTML structures.
+			tabsmenu_tab: '<li class="{0}"><span>{1}</span></li>'
 		}
 	};
 })(window.jQuery, window, document, undefined);

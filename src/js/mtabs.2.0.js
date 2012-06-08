@@ -157,7 +157,7 @@
 		container_class: "tabs", // Specifies class name(s) applied to the overall wrapping element.
 		tabs_container_class: "tabs-content", // Specifies class name(s) applied to tabs content wrapping element.
 		active_tab_class: "active-tab", // Specifies class name for currently active tab.
-		tab_text_el: "h2:first", // Specifies element to generate the text from for each tab name.
+		tab_text_el: null, // Specifies element to generate the text from for each tab name.
 		tabsmenu_class: "tabs-menu", // Specifies class name(s) applied to the tabs menu element.
 		tabsmenu_el: "ul", // Specifies element to use as a wrapper for tabs menu items.
 		tmpl: { // Templates used for building HTML structures.

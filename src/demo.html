@@ -42,7 +42,13 @@
 		<script src="js/mtabs.2.0.js"></script>
 		<script>
 			$(function() {
-				$(".set-1").mtabs();
+				$(".set-1").mtabs({
+					onTabSwitch: function(i) {
+						if (window.console && window.console.log) {
+							window.console.log("Current tab is: " + i);
+						}
+					}
+				});
 			});
 		</script>
 	</body>

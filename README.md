@@ -20,6 +20,7 @@ Converts all the children of .container into tabs using the first h2 element of 
 * **tabmenu_class**: Specifies class name(s) applied to the tabs menu element.
 * **tabsmenu_el**: Specifies element to use as a wrapper for tabs menu items.
 * **tmpl**: Templates used for building HTML structures.
+* **onTabSwitch**: Takes a callback function to be executed when tab switch occurs.
 
 ## Requires
 * jQuery 1.7+

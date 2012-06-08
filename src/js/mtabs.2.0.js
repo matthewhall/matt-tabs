@@ -1,5 +1,5 @@
 /*!
-	Matt Tabs v2.0
+	Matt Tabs v2.1
 	A simple jQuery plugin for creating tabbed interfaces.
 	
 	https://github.com/matthewhall/matt-tabs
@@ -126,7 +126,8 @@
 		// Toggle relevant tab based on the index passed in.
 		selectTab: function(idx) {
 			var self = this,
-				active_tab_class = self.options.active_tab_class;
+				opts = self.options,
+				active_tab_class = opts.active_tab_class;
 			
 			// idx = typeof idx === "string" ? idx.replace(/\D/g, "") : idx;
 			
@@ -135,6 +136,10 @@
 			
 			// Switch tab class names.
 			self.$tabs_menu.children().removeClass(active_tab_class).filter(":eq(" + idx + ")").addClass(active_tab_class);
+			
+			if (typeof opts.onTabSwitch === "function") {
+				opts.onTabSwitch(idx);
+			}
 		}
 	};
 	
@@ -162,6 +167,7 @@
 		tabsmenu_el: "ul", // Specifies element to use as a wrapper for tabs menu items.
 		tmpl: { // Templates used for building HTML structures.
 			tabsmenu_tab: '<li class="{0}"><span>{1}</span></li>'
-		}
+		},
+		onTabSwitch: null // Callback when tab switch occurs.
 	};
 })(window.jQuery, window, document, undefined);

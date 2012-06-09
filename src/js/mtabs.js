@@ -137,8 +137,9 @@
 			// Switch tab class names.
 			self.$tabs_menu.children().removeClass(active_tab_class).filter(":eq(" + idx + ")").addClass(active_tab_class);
 			
+			// Fire callback if defined.
 			if (typeof opts.onTabSelect === "function") {
-				opts.onTabSelect(idx);
+				opts.onTabSelect.call(self.element, idx);
 			}
 		}
 	};

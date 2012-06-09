@@ -51,7 +51,7 @@
 				
 				// Use the set element for the tab text or get
 				// the first heading element and use that.
-				name = tab_text_el ? $element.find(tab_text_el).hide().text() : $element.children().filter(function() {
+				name = tab_text_el ? $element.find(tab_text_el).filter(":first").hide().text() : $element.children().filter(function() {
 						return (/h[1-6]/i).test($(this)[0].nodeName);
 					})
 					.filter(":first").hide().text();

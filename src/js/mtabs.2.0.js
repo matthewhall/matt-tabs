@@ -137,8 +137,8 @@
 			// Switch tab class names.
 			self.$tabs_menu.children().removeClass(active_tab_class).filter(":eq(" + idx + ")").addClass(active_tab_class);
 			
-			if (typeof opts.onTabSwitch === "function") {
-				opts.onTabSwitch(idx);
+			if (typeof opts.onTabSelect === "function") {
+				opts.onTabSelect(idx);
 			}
 		}
 	};
@@ -168,6 +168,6 @@
 		tmpl: { // Templates used for building HTML structures.
 			tabsmenu_tab: '<li class="{0}"><span>{1}</span></li>'
 		},
-		onTabSwitch: null // Optional callback function to be executed when tab switch occurs. Receives the index of the selected tab as an argument. Default is no callback.
+		onTabSelect: null // Optional callback function to be executed when tab switch occurs. Receives the index of the selected tab as an argument. Default is no callback.
 	};
 })(window.jQuery, window, document, undefined);

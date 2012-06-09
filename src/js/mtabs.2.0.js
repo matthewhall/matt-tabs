@@ -146,7 +146,7 @@
 			
 			// Check is mtabs has already been applied.
 			if (!data) {
-				// Initialise new instance of MattTabs;
+				// Initialise new instance of MattTabs.
 				$this.data("mtabs", (data = new MattTabs(this, options)));
 			}
 		});

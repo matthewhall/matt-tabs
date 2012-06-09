@@ -13,7 +13,7 @@ Basic usage is simple:
 ```javascript
 $(".container").mtabs();
 ```
-Converts all the children of .container into tabs using the first `h1-6` element of each as the text for the tab name.
+Converts all the children of `.container` into tabs using the first `h1-6` element of each as the text for the tab name.
 
 ### Adjusting the tab text element
 If you need to you can change the element used to generate the tab text for the menu.
@@ -26,7 +26,7 @@ $(".container").mtabs({
 });
 ```
 
-The plugin will then find the first `.heading` element and use that instead.
+The plugin will then find the first `.heading` element within each child of `.container` and use that instead.
 
 Also, you can supply multiple selectors separated by a comma if, for example, `.heading` wasn't available in each element. Something like this: `.heading, .header`.
 

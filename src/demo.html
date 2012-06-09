@@ -64,10 +64,10 @@
 				$(".set-1").mtabs();
 				
 				$(".set-2").mtabs({
-					tab_text_el: ".heading, .head, header"
-					// onTabSelect: function(idx) {
-					// 	alert("Selected tab is: " + idx);
-					// }
+					tab_text_el: ".heading, .head, header",
+					onTabSelect: function(idx) {
+						alert("Selected tab is: " + idx);
+					}
 				});
 			});
 		</script>

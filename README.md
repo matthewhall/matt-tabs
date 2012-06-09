@@ -13,7 +13,7 @@ Basic usage is simple:
 ```javascript
 $(".container").mtabs();
 ```
-Converts all the children of `.container` into tabs using the first `h1-6` element of each as the text for the tab name.
+Converts all the children of `.container` into tabs and inserts the tabs menu before them.
 
 ### Adjusting the tab text element
 If you need to you can change the element used to generate the tab text for the menu.

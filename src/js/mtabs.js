@@ -1,5 +1,5 @@
 /*!
-	Matt Tabs v2.1
+	Matt Tabs v2.1.1
 	A simple jQuery plugin for creating tabbed interfaces.
 	
 	https://github.com/matthewhall/matt-tabs

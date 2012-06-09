@@ -68,7 +68,6 @@
 				element = opts.tabsmenu_el,
 				tab_names = self.tab_names,
 				html = "<" + element + ' class="' + opts.tabsmenu_class + '">',
-				tab_class,
 				i = 0,
 				len = tab_names.length,
 				child_node_name,
@@ -89,11 +88,8 @@
 				};
 			
 			for (; i < len; i++) {
-				// Create specific class name for each tab.
-				tab_class = "tab-" + (i + 1);
-				
-				// Build HTML for each tab.
-				html += buildTabs(tab_class, tab_names[i]);
+				// Build HTML for each tab passing in the idx and the name.
+				html += buildTabs((i + 1), tab_names[i]);
 			}
 			
 			// Close the container.
@@ -167,7 +163,7 @@
 		tabsmenu_class: "tabs-menu", // Specifies class name(s) applied to the tabs menu element.
 		tabsmenu_el: "ul", // Specifies element to use as a wrapper for tabs menu items.
 		tmpl: { // Templates used for building HTML structures.
-			tabsmenu_tab: '<li class="{0}"><span>{1}</span></li>'
+			tabsmenu_tab: '<li class="tab-{0}"><span>{1}</span></li>'
 		},
 		onTabSelect: null // Optional callback function to be executed when tab switch occurs. Receives the index of the selected tab as an argument. Default is no callback.
 	};

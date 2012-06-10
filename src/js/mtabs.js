@@ -15,6 +15,7 @@
 		self.$element = $(element);
 		self.tabs = self.$element.children();
 		self.options = $.extend({}, $.fn.mtabs.defaults, options);
+		self.current_tab = 0;
 		
 		self.init();
 	};
@@ -133,10 +134,13 @@
 			// Switch tab class names.
 			self.$tabs_menu.children().removeClass(active_tab_class).filter(":eq(" + idx + ")").addClass(active_tab_class);
 			
-			// Fire callback if defined.
-			if (typeof opts.onTabSelect === "function") {
+			// Fire callback if defined and current tab has changed.
+			if (typeof opts.onTabSelect === "function" && idx !== self.current_tab) {
 				opts.onTabSelect.call(self.element, idx);
 			}
+			
+			// Update current tab reference.
+			self.current_tab = idx;
 		}
 	};
 	

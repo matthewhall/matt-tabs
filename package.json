@@ -1,0 +1,22 @@
+{
+	"name": "mtabs",
+	"title": "Matt Tabs",
+	"description": "",
+	"version": "2.1.1",
+	"homepage": "https://github.com/matthewhall/matt-tabs",
+	"author": {
+		"name": "Matt Hall",
+		"email": "bizear@gmail.com"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/matthewhall/matt-tabs.git"
+	},
+	"bugs": {
+		"url": "https://github.com/matthewhall/matt-tabs/issues"
+	},
+	"dependencies": {
+		"jquery": "1.7.0"
+	},
+	"keywords": []
+}

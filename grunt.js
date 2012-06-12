@@ -6,9 +6,9 @@ module.exports = function(grunt) {
 		meta: {
 			banner: '/*! <%= pkg.title || pkg.name %> v<%= pkg.version %> | <%= pkg.homepage && pkg.homepage %> */'
 		},
-		// lint: {
-		// 	files: ['grunt.js', 'src/**/*.js', 'tests/**/*.js']
-		// },
+		lint: {
+			files: ['grunt.js', 'src/**/*.js']
+		},
 		// qunit: {
 		// 	files: ['tests/**/*.html']
 		// },

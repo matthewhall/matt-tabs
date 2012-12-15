@@ -3,7 +3,7 @@
 A simple, unobtrusive jQuery plugin for creating tabbed interfaces.
 
 ## Usage
-Matt Tabs tries to be as lightweight and unobtrusive as possible. As such, it doesn't require any additional HTML to be added into your markup to use for a tabs menu. Instead, when `mtabs` is applied to an element it will use pre-existing markup for the tab text and then will build and insert all the HTML it need for the menu.
+Matt Tabs tries to be as lightweight and unobtrusive as possible. As such, it doesn't require any additional HTML to be added into your markup to use for a tabs menu. Instead, when `mtabs` is applied to an element it will use pre-existing markup for the tab text and then will build and insert all the HTML it needs.
 
 The element used for the tab text, amongst other things, can be adjusted as described below. A full list of customisable options is also below.
 

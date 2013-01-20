@@ -41,6 +41,17 @@ $(".container").mtabs({
 
 The callback function, `onTabSelect`, is fired every time a tab is selected. The function is passed the index of the selected tab as an argument.
 
+### Methods
+####.mtabs('show', index)
+
+Show particular tab in a given tab set. Index is 0-based.
+
+For example, this will show the third tab in a tab set:
+
+```javascript
+$(".container").mtabs('show', 2);
+```
+
 ### Options
 * **container_class**: Specifies class name(s) applied to the overall wrapping element. Default is `tabs`.
 * **tabs_container_class**: Specifies class name(s) applied to tabs content wrapping element. Default is `tabs-content`.

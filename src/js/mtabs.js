@@ -143,6 +143,7 @@
 			self.current_tab = idx;
 		},
 
+		// Show particular tab
 		show: function(idx) {
 			this.selectTab(idx - 1);
 		}
@@ -163,6 +164,7 @@
 				$this.data("mtabs", (data = new MattTabs(this, opts)));
 			}
 
+			// Check for "show method"
 			if (typeof options === 'string' && idx) {
 				data[options](idx);
 			}

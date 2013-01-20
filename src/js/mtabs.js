@@ -111,7 +111,7 @@
 						idx = $this.index();
 					
 					// Select the tab.
-					self.selectTab(idx);
+					self.show(idx);
 					
 					// Just in case an a element has been supplied as a template.
 					e.preventDefault();
@@ -120,8 +120,8 @@
 				.find(":first").trigger("click");
 		},
 		
-		// Toggle relevant tab based on the index passed in.
-		selectTab: function(idx) {
+		// Toggle tab passing the relevant index
+		show: function(idx) {
 			var self = this,
 				opts = self.options,
 				active_tab_class = opts.active_tab_class;
@@ -142,11 +142,6 @@
 			// Update current tab reference.
 			self.current_tab = idx;
 		},
-
-		// Show particular tab
-		show: function(idx) {
-			this.selectTab(idx - 1);
-		}
 	};
 	
 	// Add to $.fn namespace.
@@ -164,7 +159,7 @@
 				$this.data("mtabs", (data = new MattTabs(this, opts)));
 			}
 
-			// Check for "show method"
+			// Check for "show method". 0-based index
 			if (typeof options === 'string' && idx) {
 				data[options](idx);
 			}

@@ -1,5 +1,5 @@
 /*!
-	Matt Tabs v2.1.1
+	Matt Tabs v2.2
 	A simple jQuery plugin for creating tabbed interfaces.
 	
 	https://github.com/matthewhall/matt-tabs
@@ -141,19 +141,30 @@
 			
 			// Update current tab reference.
 			self.current_tab = idx;
+		},
+
+		show: function(idx) {
+			this.selectTab(idx - 1);
 		}
 	};
 	
 	// Add to $.fn namespace.
-	$.fn.mtabs = function(options) {
+	$.fn.mtabs = function(options, idx) {
 		return this.each(function() {
 			var $this = $(this),
-				data = $this.data("mtabs");
+				data = $this.data("mtabs"),
+				opts;
+
+			opts = typeof options === 'object' && options;
 			
 			// Check if mtabs has already been applied.
 			if (!data) {
 				// Initialise new instance of MattTabs.
-				$this.data("mtabs", (data = new MattTabs(this, options)));
+				$this.data("mtabs", (data = new MattTabs(this, opts)));
+			}
+
+			if (typeof options === 'string' && idx) {
+				data[options](idx);
 			}
 		});
 	};

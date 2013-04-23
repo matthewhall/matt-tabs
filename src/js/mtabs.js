@@ -141,7 +141,7 @@
 			
 			// Update current tab reference.
 			self.current_tab = idx;
-		},
+		}
 	};
 	
 	// Add to $.fn namespace.

@@ -48,14 +48,12 @@
 			
 			self.tabs.each(function(idx, element) {
 				var name,
-					$element = $(element);
+					$element = $(element),
+					name_selector = tab_text_el;
 				
 				// Use the set element for the tab text or get
 				// the first heading element and use that.
-				name = tab_text_el ? $element.find(tab_text_el).filter(":first").hide().text() : $element.children().filter(function() {
-						return (/h[1-6]/i).test($(this)[0].nodeName);
-					})
-					.filter(":first").hide().text();
+				name = $element.find(name_selector).filter(':first').hide().text();
 				
 				self.tab_names.push(name);
 			});
@@ -142,6 +140,19 @@
 			// Update current tab reference.
 			self.current_tab = idx;
 		},
+		
+		destroy: function() {
+			var self = this,
+				name_selector = self.options.tab_text_el;
+			
+			self.$tabs_menu.remove();
+			self.tabs.unwrap().unwrap();
+			
+			self.tabs.removeAttr('style');
+			self.tabs.children(name_selector + ':first').removeAttr('style');
+			
+			self.$element.removeData('mtabs');
+		}
 	};
 	
 	// Add to $.fn namespace.
@@ -159,8 +170,8 @@
 				$this.data("mtabs", (data = new MattTabs(this, opts)));
 			}
 
-			// Check for "show method". 0-based index
-			if (typeof options === 'string' && idx) {
+			// Check for method invocation
+			if (typeof options === 'string') {
 				data[options](idx);
 			}
 		});
@@ -171,7 +182,7 @@
 		container_class: "tabs", // Specifies class name(s) applied to the overall wrapping element.
 		tabs_container_class: "tabs-content", // Specifies class name(s) applied to tabs content wrapping element.
 		active_tab_class: "active-tab", // Specifies class name for currently active tab.
-		tab_text_el: null, // Specifies element to generate the text from for each tab name.
+		tab_text_el: 'h1, h2, h3, h4, h5, h6', // Specifies element to generate the text from for each tab name.
 		tabsmenu_class: "tabs-menu", // Specifies class name(s) applied to the tabs menu element.
 		tabsmenu_el: "ul", // Specifies element to use as a wrapper for tabs menu items.
 		tmpl: { // Templates used for building HTML structures.

@@ -74,7 +74,7 @@
 				child_node_name,
 				
 				// Private func to build the tab HTML.
-				buildTabs = function() {
+				buildMenuHTML = function() {
 					var args = arguments;
 					
 					// Replace any {0} placeholders with any text passed in as arguments.
@@ -90,7 +90,7 @@
 			
 			for (; i < len; i++) {
 				// Build HTML for each tab passing in the idx and the name.
-				html += buildTabs((i + 1), tab_names[i]);
+				html += buildMenuHTML((i + 1), tab_names[i]);
 			}
 			
 			// Close the container.

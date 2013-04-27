@@ -52,6 +52,14 @@ For example, this will show the third tab in a tab set:
 $(".container").mtabs('show', 2);
 ```
 
+####.mtabs('destroy')
+
+Destroys a current instance of `.mtabs`, removing all data and addional HTML added by the plugin.
+
+```javascript
+$(".container").mtabs('destroy');
+```
+
 ### Options
 * **container_class**: Specifies class name(s) applied to the overall wrapping element. Default is `tabs`.
 * **tabs_container_class**: Specifies class name(s) applied to tabs content wrapping element. Default is `tabs-content`.

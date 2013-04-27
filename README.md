@@ -11,7 +11,7 @@ The element used for the tab text, amongst other things, can be adjusted as desc
 Basic usage is simple:
 
 ```javascript
-$(".container").mtabs();
+$('.container').mtabs();
 ```
 Converts all the children of `.container` into tabs and inserts the tabs menu before them.
 
@@ -21,8 +21,8 @@ If you need to you can change the element used to generate the tab text for the 
 This is done by supplying a valid jQuery selector to the `tab_text_el` property when initialising Matt Tabs on an element.
 
 ```javascript
-$(".container").mtabs({
-	tab_text_el: ".heading"
+$('.container').mtabs({
+	tab_text_el: '.heading'
 });
 ```
 
@@ -32,7 +32,7 @@ Also, you can supply multiple selectors separated by a comma if, for example, `.
 
 ### Callbacks
 ```javascript
-$(".container").mtabs({
+$('.container').mtabs({
 	onTabSelect: function(idx) {
 		// Do something here...
 	}
@@ -49,7 +49,7 @@ Show particular tab in a given tab set. Index is 0-based.
 For example, this will show the third tab in a tab set:
 
 ```javascript
-$(".container").mtabs('show', 2);
+$('.container').mtabs('show', 2);
 ```
 
 ####.mtabs('destroy')
@@ -57,7 +57,7 @@ $(".container").mtabs('show', 2);
 Destroys a current instance of `.mtabs`, removing all data and addional HTML added by the plugin.
 
 ```javascript
-$(".container").mtabs('destroy');
+$('.container').mtabs('destroy');
 ```
 
 ### Options

@@ -61,6 +61,20 @@ describe('Matt Tabs spec', function() {
 			expect(spy).toHaveBeenTriggered();
 		});
 
+		it('Should switch the "active-tab" class to the relevant tab menu item when it is clicked', function() {
+			var $menuItems;
+
+			$container.mtabs();
+			$menuItems = $container.find('.tabs-menu').children();
+
+			expect($menuItems.filter(':first')).toHaveClass('active-tab');
+
+			$menuItems.filter(':last').trigger('click');
+
+			expect($menuItems.filter(':first')).not.toHaveClass('active-tab');
+			expect($menuItems.filter(':last')).toHaveClass('active-tab');
+		});
+
 		it('Should show the relevant content when a tab is clicked', function() {
 			$container.mtabs();
 

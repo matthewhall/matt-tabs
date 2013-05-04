@@ -15,12 +15,9 @@ describe('Matt Tabs spec', function() {
 
 	describe("Initialising Matt Tabs on an element should build a new tab menu from that element's children", function() {
 		it('Should create a new menu', function() {
-			var $menu;
-
 			$container.mtabs();
-			$menu = $container.find('.tabs-menu');
 
-			expect($menu.length).toEqual(1);
+			expect($container.find('.tabs-menu')).toExist();
 		});
 
 		it('Should create a tab menu item for each child', function() {

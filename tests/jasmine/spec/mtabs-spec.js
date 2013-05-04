@@ -48,6 +48,19 @@ describe('Matt Tabs spec', function() {
 			});
 		});
 
+		it('Should apply a click event to each tab item in the menu', function() {
+			var spy,
+				$menuItems;
+
+			$container.mtabs();
+			$menuItems = $container.find('.tabs-menu').children();
+
+			spy = spyOnEvent($menuItems, 'click');
+			$menuItems.filter(':last').trigger('click');
+
+			expect(spy).toHaveBeenTriggered();
+		});
+
 		it('Should show the relevant content when a tab is clicked', function() {
 			$container.mtabs();
 

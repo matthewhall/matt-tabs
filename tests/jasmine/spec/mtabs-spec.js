@@ -21,13 +21,13 @@ describe('Matt Tabs spec', function() {
 		});
 
 		it('Should create a tab menu item for each child', function() {
-			var $menuItemsLen,
-				$childrenLen = $container.children().length;
+			var $menuItems,
+				childrenLen = $container.children().length;
 
 			$container.mtabs();
-			$menuItemsLen = $container.find('.tabs-menu').children().length;
+			$menuItems = $container.find('.tabs-menu').children();
 
-			expect($menuItemsLen).toEqual($childrenLen);
+			expect($menuItems).toHaveLength(childrenLen);
 		});
 
 		it('Should use the heading text from each child as the tab name', function() {
@@ -85,6 +85,32 @@ describe('Matt Tabs spec', function() {
 			$container.find('.tabs-menu').children(':eq(2)').trigger('click');
 
 			expect($container.find('.panel:eq(2)')).toBeVisible();
+		});
+	});
+
+	describe('Matt Tabs public methods', function() {
+		it('Should show relevent tab when .mtabs("show") is invoked', function() {
+			$container.mtabs();
+
+			$container.mtabs('show', 3);
+
+			expect($container.find('.panel:first')).not.toBeVisible();
+			expect($container.find('.panel:last')).toBeVisible();
+
+			$container.mtabs('show', 2);
+
+			expect($container.find('.panel:last')).not.toBeVisible();
+			expect($container.find('.panel:eq(2)')).toBeVisible();
+		});
+
+		it('Should destroy all traces of Matt Tabs plugin when .mtabs("destroy") is invoked', function() {
+			$container.mtabs();
+			$container.mtabs('destroy');
+
+			expect($container).not.toHaveData('mtabs');
+			expect($container.find('.tabs')).not.toExist();
+			expect($container.find('.tabs-menu')).not.toExist();
+			expect($container.find('.panel h2')).toBeVisible();
 		});
 	});
 });

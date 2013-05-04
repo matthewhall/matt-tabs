@@ -47,5 +47,30 @@ describe('Matt Tabs spec', function() {
 				expect(tabText).toMatch(headingText[idx]);
 			});
 		});
+
+		it('Should apply a click event to each tab item in the menu', function() {
+			var spy,
+				$menuItems;
+
+			$container.mtabs();
+			$menuItems = $container.find('.tabs-menu').children();
+
+			spy = spyOnEvent($menuItems, 'click');
+			$menuItems.filter(':last').trigger('click');
+
+			expect(spy).toHaveBeenTriggered();
+		});
+
+		it('Should show the relevant content when a tab is clicked', function() {
+			$container.mtabs();
+
+			$container.find('.tabs-menu').children(':last').trigger('click');
+
+			expect($container.find('.panel:last')).toBeVisible();
+
+			$container.find('.tabs-menu').children(':eq(2)').trigger('click');
+
+			expect($container.find('.panel:eq(2)')).toBeVisible();
+		});
 	});
 });

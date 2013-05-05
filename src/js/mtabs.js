@@ -5,10 +5,10 @@
 	https://github.com/matthewhall/matt-tabs
 */
 
-;(function($, window, document, undefined) {
+;(function ($, window, document, undefined) {
 	"use strict";
 
-	var MattTabs = function(element, options) {
+	var MattTabs = function (element, options) {
 		var self = this;
 
 		self.element = element;
@@ -21,7 +21,7 @@
 	};
 
 	MattTabs.prototype = {
-		init: function() {
+		init: function () {
 			var self = this;
 			
 			if (self.tabs.length) {
@@ -31,7 +31,7 @@
 			}
 		},
 
-		build: function() {
+		build: function () {
 			var self = this,
 				opts = self.options,
 				tab_text_el = opts.tab_text_el,
@@ -46,7 +46,7 @@
 			// Wrap all tabs in a container element.
 			self.tabs.wrapAll('<div class="' + opts.tabs_container_class + '" />');
 
-			self.tabs.each(function(idx, element) {
+			self.tabs.each(function (idx, element) {
 				var name,
 					$element = $(element),
 					name_selector = tab_text_el;
@@ -61,7 +61,7 @@
 
 		// Generates the HTML markup for the tabs menu and
 		// appends it to the relevant page of the page.
-		buildTabMenu: function() {
+		buildTabMenu: function () {
 			var self = this,
 				opts = self.options,
 				element = opts.tabsmenu_el,
@@ -72,11 +72,11 @@
 				child_node_name,
 
 				// Private func to build the tab HTML.
-				buildMenuHTML = function() {
+				buildMenuHTML = function () {
 					var args = arguments;
 
 					// Replace any {0} placeholders with any text passed in as arguments.
-					return opts.tmpl.tabsmenu_tab.replace(/\{[0-9]\}/g, function(str) {
+					return opts.tmpl.tabsmenu_tab.replace(/\{[0-9]\}/g, function (str) {
 						// Replace non-numeric chars and convert to number.
 						var num = Number(str.replace(/\D/g, ''));
 
@@ -103,7 +103,7 @@
 			child_node_name = self.$tabs_menu.find(':first')[0].nodeName.toLowerCase();
 
 			// Delegate click evens to each tab.
-			self.$tabs_menu.on('click', child_node_name, function(e) {
+			self.$tabs_menu.on('click', child_node_name, function (e) {
 					var $this = $(this),
 						// Use the tab's index to associate it with it's content.
 						idx = $this.index();
@@ -119,7 +119,7 @@
 		},
 
 		// Toggle tab passing the relevant index
-		show: function(idx) {
+		show: function (idx) {
 			var self = this,
 				opts = self.options,
 				active_tab_class = opts.active_tab_class;
@@ -139,7 +139,7 @@
 			self.current_tab = idx;
 		},
 		
-		destroy: function() {
+		destroy: function () {
 			var self = this,
 				name_selector = self.options.tab_text_el;
 
@@ -154,8 +154,8 @@
 	};
 
 	// Add to $.fn namespace.
-	$.fn.mtabs = function(options, idx) {
-		return this.each(function() {
+	$.fn.mtabs = function (options, idx) {
+		return this.each(function () {
 			var $this = $(this),
 				data = $this.data('mtabs'),
 				opts;

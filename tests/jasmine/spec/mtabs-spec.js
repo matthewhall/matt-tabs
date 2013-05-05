@@ -1,7 +1,7 @@
-describe('Matt Tabs spec', function() {
+describe('Matt Tabs spec', function () {
 	var $container;
 
-	beforeEach(function() {
+	beforeEach(function () {
 		$container = $('<div class="set set-1" />').appendTo('body');
 
 		for (var i = 0; i < 4; i++) {
@@ -9,18 +9,18 @@ describe('Matt Tabs spec', function() {
 		}
 	});
 
-	afterEach(function() {
+	afterEach(function () {
 		$('.set').remove();
 	});
 
-	describe("Initialising Matt Tabs on an element should build a new tab menu from that element's children", function() {
-		it('Should create a new menu', function() {
+	describe("Initialising Matt Tabs on an element should build a new tab menu from that element's children", function () {
+		it('Should create a new menu', function () {
 			$container.mtabs();
 
 			expect($container.find('.tabs-menu')).toExist();
 		});
 
-		it('Should create a tab menu item for each child', function() {
+		it('Should create a tab menu item for each child', function () {
 			var $menuItems,
 				childrenLen = $container.children().length;
 
@@ -30,9 +30,9 @@ describe('Matt Tabs spec', function() {
 			expect($menuItems).toHaveLength(childrenLen);
 		});
 
-		it('Should use the heading text from each child as the tab name', function() {
+		it('Should use the heading text from each child as the tab name', function () {
 			var $menuItems,
-				headingText = $container.children().map(function(idx, element) {
+				headingText = $container.children().map(function (idx, element) {
 					element = $(element);
 
 					return element.find('h2').text();
@@ -41,14 +41,14 @@ describe('Matt Tabs spec', function() {
 			$container.mtabs();
 			$menuItems = $container.find('.tabs-menu').children();
 
-			$menuItems.each(function(idx) {
+			$menuItems.each(function (idx) {
 				var tabText = $(this).text();
 
 				expect(tabText).toMatch(headingText[idx]);
 			});
 		});
 
-		it('Should apply a click event to each tab item in the menu', function() {
+		it('Should apply a click event to each tab item in the menu', function () {
 			var spy,
 				$menuItems;
 
@@ -61,7 +61,7 @@ describe('Matt Tabs spec', function() {
 			expect(spy).toHaveBeenTriggered();
 		});
 
-		it('Should switch the "active-tab" class to the relevant tab menu item when it is clicked', function() {
+		it('Should switch the "active-tab" class to the relevant tab menu item when it is clicked', function () {
 			var $menuItems;
 
 			$container.mtabs();
@@ -75,7 +75,7 @@ describe('Matt Tabs spec', function() {
 			expect($menuItems.filter(':last')).toHaveClass('active-tab');
 		});
 
-		it('Should show the relevant content when a tab is clicked', function() {
+		it('Should show the relevant content when a tab is clicked', function () {
 			$container.mtabs();
 
 			$container.find('.tabs-menu').children(':last').trigger('click');
@@ -88,8 +88,8 @@ describe('Matt Tabs spec', function() {
 		});
 	});
 
-	describe('Matt Tabs public methods', function() {
-		it('Should show relevent tab when .mtabs("show") is invoked', function() {
+	describe('Matt Tabs public methods', function () {
+		it('Should show relevent tab when .mtabs("show") is invoked', function () {
 			$container.mtabs();
 
 			$container.mtabs('show', 3);
@@ -103,7 +103,7 @@ describe('Matt Tabs spec', function() {
 			expect($container.find('.panel:eq(2)')).toBeVisible();
 		});
 
-		it('Should destroy all traces of Matt Tabs plugin when .mtabs("destroy") is invoked', function() {
+		it('Should destroy all traces of Matt Tabs plugin when .mtabs("destroy") is invoked', function () {
 			$container.mtabs();
 			$container.mtabs('destroy');
 

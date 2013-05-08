@@ -13,6 +13,28 @@ describe('Matt Tabs spec', function () {
 		$('.set').remove();
 	});
 
+	it('Should wrap all the children in wrapping div with a class of "tabs"', function () {
+		$container.mtabs();
+
+		expect($container.children(':first')).toHaveClass('tabs');
+	});
+
+	it('Should hide all children except for the first', function () {
+		var $panels = $container.children();
+
+		$container.mtabs();
+
+		expect($panels.filter(':first')).toBeVisible();
+		expect($panels.filter(':not(:first)')).toBeHidden();
+	});
+
+	it('Should do nothing if the container is empty', function () {
+		$container.children().remove();
+
+		expect($container.find('.tabs')).not.toExist();
+		expect($container.find('.tabs-menu')).not.toExist();
+	});
+
 	describe("Initialising Matt Tabs on an element should build a new tab menu from that element's children", function () {
 		it('Should create a new menu', function () {
 			$container.mtabs();

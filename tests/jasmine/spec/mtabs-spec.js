@@ -110,6 +110,77 @@ describe('Matt Tabs spec', function () {
 		});
 	});
 
+	describe('Plugin customization', function () {
+		it('Should allow the container class to be adjusted', function () {
+			$container.mtabs({
+				container_class: 'some-class'
+			});
+
+			expect($container.children(':first')).toHaveClass('some-class');
+		});
+
+		it('Should allow the tabs container class to be adjusted', function () {
+			$container.mtabs({
+				tabs_container_class: 'content'
+			});
+
+			expect($container.find('.tabs').children(':last')).toHaveClass('content');
+		});
+
+		it('Should allow the tabs-menu class to be adjusted', function () {
+			$container.mtabs({
+				tabsmenu_class: 'menu'
+			});
+
+			expect($container.find('.tabs').children(':first')).toHaveClass('menu');
+		});
+
+		it('Should allow the active tab class to be adjusted', function () {
+			var $menuItems;
+
+			$container.mtabs({
+				active_tab_class: 'current'
+			});
+
+			$menuItems = $container.find('.tabs-menu').children();
+
+			expect($menuItems.filter(':first')).toHaveClass('current');
+
+			$menuItems.filter(':last').trigger('click');
+
+			expect($menuItems.filter(':first')).not.toHaveClass('current');
+			expect($menuItems.filter(':last')).toHaveClass('current');
+		});
+
+		it('Should invoke a callback function if one is provided when a tab menu item is clicked passing the index of the clicked tab as an argument', function () {
+			var dummyFunc = {
+					func: function (idx) {
+						var i = idx;
+					}
+				},
+				spy,
+				$menuItems;
+
+			spyOn(dummyFunc, 'func');
+
+			$container.mtabs({
+				onTabSelect: dummyFunc.func
+			});
+
+			$menuItems = $container.find('.tabs-menu').children();
+
+			$menuItems.filter(':last').trigger('click');
+
+			expect(dummyFunc.func).toHaveBeenCalled();
+			expect(dummyFunc.func).toHaveBeenCalledWith(3);
+
+			$menuItems.filter(':eq(1)').trigger('click');
+
+			expect(dummyFunc.func).toHaveBeenCalled();
+			expect(dummyFunc.func).toHaveBeenCalledWith(1);
+		});
+	});
+
 	describe('Matt Tabs public methods', function () {
 		it('Should show relevent tab when .mtabs("show") is invoked', function () {
 			$container.mtabs();

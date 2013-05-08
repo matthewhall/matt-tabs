@@ -152,7 +152,7 @@ describe('Matt Tabs spec', function () {
 			expect($menuItems.filter(':last')).toHaveClass('current');
 		});
 
-		it('Should invoke a callback function if one is provided when a tab menu item is clicked passing the index of the clicked tab as an argument', function () {
+		it('Should invoke a callback function (if one is provided) when a tab menu item is clicked, passing the index of the clicked tab as an argument', function () {
 			var dummyFunc = {
 					func: function (idx) {
 						var i = idx;

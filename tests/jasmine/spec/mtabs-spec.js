@@ -5,7 +5,7 @@ describe('Matt Tabs spec', function () {
 		$container = $('<div class="set set-1" />').appendTo('body');
 
 		for (var i = 0; i < 4; i++) {
-			$container.append('<div class="panel"><h2>Panel ' + i + '</h2><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>');
+			$container.append('<div class="panel"><h2>Panel ' + i + '</h2><header class="alt-head">Heading ' + i + '</header><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>');
 		}
 	});
 
@@ -150,6 +150,26 @@ describe('Matt Tabs spec', function () {
 
 			expect($menuItems.filter(':first')).not.toHaveClass('current');
 			expect($menuItems.filter(':last')).toHaveClass('current');
+		});
+
+		it('Should allow the element used for the tab menu text to be adjusted', function () {
+			var $menuItems,
+				headingText = $container.children().map(function (idx, element) {
+					element = $(element);
+
+					return element.find('.alt-head').text();
+				}).get();
+
+			$container.mtabs({
+				tab_text_el: '.alt-head'
+			});
+			$menuItems = $container.find('.tabs-menu').children();
+
+			$menuItems.each(function (idx) {
+				var tabText = $(this).text();
+
+				expect(tabText).toMatch(headingText[idx]);
+			});
 		});
 
 		it('Should allow the tabs menu element to be adjusted', function () {

@@ -152,6 +152,14 @@ describe('Matt Tabs spec', function () {
 			expect($menuItems.filter(':last')).toHaveClass('current');
 		});
 
+		it('Should allow the tabs menu element to be adjusted', function () {
+			$container.mtabs({
+				tabsmenu_el: 'ol'
+			});
+
+			expect($container.find('ol.tabs-menu')).toExist();
+		});
+
 		it('Should invoke a callback function (if one is provided) when a tab menu item is clicked, passing the index of the clicked tab as an argument', function () {
 			var dummyFunc = {
 					func: function (idx) {

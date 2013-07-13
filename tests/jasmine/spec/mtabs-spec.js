@@ -5,7 +5,7 @@ describe('Matt Tabs spec', function () {
 		$container = $('<div class="set set-1" />').appendTo('body');
 
 		for (var i = 0; i < 4; i++) {
-			$container.append('<div class="panel"><h2>Panel ' + i + '</h2><header class="alt-head">Heading ' + i + '</header><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>');
+			$container.append('<div class="panel"><h2>Panel ' + (i + 1) + '</h2><header class="alt-head">Heading ' + (i + 1) + '</header><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>');
 		}
 	});
 
@@ -30,6 +30,8 @@ describe('Matt Tabs spec', function () {
 
 	it('Should do nothing if the container is empty', function () {
 		$container.children().remove();
+
+		$container.mtabs();
 
 		expect($container.find('.tabs')).not.toExist();
 		expect($container.find('.tabs-menu')).not.toExist();
@@ -178,6 +180,30 @@ describe('Matt Tabs spec', function () {
 			});
 
 			expect($container.find('ol.tabs-menu')).toExist();
+		});
+
+		it('Should allow the HTML used for the tab menu items to be adjusted', function () {
+			var $menuItems;
+
+			$container.mtabs({
+				tabsmenu_el: 'div',
+				tmpl: {
+					tabsmenu_tab: '<div id="tab-{0}" class="item"><span class="item-inner">{1}</span></div>'
+				}
+			});
+
+			$menuItems = $container.find('.tabs-menu').children();
+
+			$menuItems.each(function (idx) {
+				var $this = $(this);
+
+				idx += 1;
+
+				expect($this.is('div')).toBe(true);
+				expect($this).toHaveClass('item');
+				expect($this).toHaveId('tab-' + idx);
+				expect($this).toHaveHtml('<span class="item-inner">Panel ' + idx + '</span>');
+			});
 		});
 
 		it('Should invoke a callback function (if one is provided) when a tab menu item is clicked, passing the index of the clicked tab as an argument', function () {

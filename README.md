@@ -45,7 +45,7 @@ Called when `.mtabs` has been fully instantiated.
 #### onTabSelect
 ```javascript
 $('.container').mtabs({
-	onTabSelect: function(idx) {
+	onTabSelect: function (idx) {
 		// Do something here...
 	}
 });

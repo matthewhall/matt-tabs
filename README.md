@@ -31,6 +31,18 @@ The plugin will then find the first `.heading` element within each child of `.co
 Also, you can supply multiple selectors separated by a comma if, for example, `.heading` wasn't available in each element. Something like this: `.heading, .header`.
 
 ### Callbacks
+#### onReady
+```javascript
+$('.container').mtabs({
+	onReady: function () {
+		// Do something here...
+	}
+});
+```
+
+Called when `.mtabs` has been fully instantiated.
+
+#### onTabSelect
 ```javascript
 $('.container').mtabs({
 	onTabSelect: function(idx) {

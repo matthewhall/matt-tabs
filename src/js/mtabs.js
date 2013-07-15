@@ -57,6 +57,10 @@
 
 				self.tab_names.push(name);
 			});
+
+			if ($.isFunction(opts.onReady)) {
+				opts.onReady();
+			}
 		},
 
 		// Generates the HTML markup for the tabs menu and

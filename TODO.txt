@@ -1,2 +1,0 @@
-History.
-Shouldn't tab empty elements.

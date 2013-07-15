@@ -233,6 +233,20 @@ describe('Matt Tabs spec', function () {
 			expect(dummyFunc.func).toHaveBeenCalled();
 			expect(dummyFunc.func).toHaveBeenCalledWith(1);
 		});
+
+		it('Should invoke a callback function (if one is provided) when mtabs has been instantiated', function () {
+			var dummyFunc = {
+					func: function () {}
+				};
+
+			spyOn(dummyFunc, 'func');
+
+			$container.mtabs({
+				onReady: dummyFunc.func
+			});
+
+			expect(dummyFunc.func).toHaveBeenCalled();
+		});
 	});
 
 	describe('Matt Tabs public methods', function () {

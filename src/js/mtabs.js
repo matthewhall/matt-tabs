@@ -135,7 +135,7 @@
 			self.$tabs_menu.children().removeClass(active_tab_class).filter(':eq(' + idx + ')').addClass(active_tab_class);
 
 			// Fire callback if defined and current tab has changed.
-			if (typeof opts.onTabSelect === 'function' && idx !== self.current_tab) {
+			if ($.isFunction(opts.onTabSelect) && idx !== self.current_tab) {
 				opts.onTabSelect.call(self.element, idx);
 			}
 

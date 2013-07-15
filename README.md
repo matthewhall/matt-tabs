@@ -51,7 +51,7 @@ $('.container').mtabs({
 });
 ```
 
-The callback function, `onTabSelect`, is fired every time a tab is selected. The function is passed the index of the selected tab as an argument.
+`onTabSelect` is fired every time a tab is selected. The function is passed the index of the selected tab as an argument.
 
 ### Methods
 ####.mtabs('show', index)

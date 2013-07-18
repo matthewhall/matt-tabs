@@ -59,7 +59,7 @@
 			});
 
 			if ($.isFunction(opts.onReady)) {
-				opts.onReady();
+				opts.onReady.call(self.element);
 			}
 		},
 

@@ -13,11 +13,13 @@ module.exports = function (grunt) {
 			files: [
 				'Gruntfile.js',
 				'src/**/*.js',
-				'tests/spec/**/*.js',
-				'!**/libs/*.js',
-				'!**/*.min.js'
+				'tests/jasmine/spec/**/*.js'
 			],
 			options: {
+				ignores: [
+					'**/libs/*.js',
+					'**/*.min.js'
+				],
 				globals: {
 					window: true,
 					document: true,

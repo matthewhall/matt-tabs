@@ -9,7 +9,7 @@
 		"collapse",
 		"expand"
 	],
-	"version": "2.2",
+	"version": "2.2.1",
 	"author": {
 		"name": "Matt Hall",
 		"url": "http://meta-graphical.com/",
@@ -17,7 +17,7 @@
 	},
 	"homepage": "https://github.com/matthewhall/matt-tabs",
 	"demo": "http://meta-graphical.com/github/demos/matt-tabs",
-	"download": "https://raw.github.com/matthewhall/matt-tabs/master/src/js/mtabs.2.2.min.js",
+	"download": "https://raw.github.com/matthewhall/matt-tabs/master/src/js/mtabs.2.2.1.min.js",
 	"bugs": "https://github.com/matthewhall/matt-tabs/issues",
 	"licenses": [
 		{

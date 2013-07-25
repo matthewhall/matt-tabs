@@ -2,7 +2,7 @@
   "name": "mtabs",
   "title": "Matt Tabs",
   "description": "A simple, unobtrusive jQuery plugin for creating tabbed interfaces.",
-  "version": "2.2",
+  "version": "2.2.1",
   "homepage": "https://github.com/matthewhall/matt-tabs",
   "author": {
     "name": "Matt Hall",

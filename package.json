@@ -1,22 +1,29 @@
 {
-	"name": "mtabs",
-	"title": "Matt Tabs",
-	"description": "",
-	"version": "2.2",
-	"homepage": "https://github.com/matthewhall/matt-tabs",
-	"author": {
-		"name": "Matt Hall",
-		"email": "bizear@gmail.com"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git://github.com/matthewhall/matt-tabs.git"
-	},
-	"bugs": {
-		"url": "https://github.com/matthewhall/matt-tabs/issues"
-	},
-	"dependencies": {
-		"jquery": "1.7.0"
-	},
-	"keywords": []
+  "name": "mtabs",
+  "title": "Matt Tabs",
+  "description": "A simple, unobtrusive jQuery plugin for creating tabbed interfaces.",
+  "version": "2.2",
+  "homepage": "https://github.com/matthewhall/matt-tabs",
+  "author": {
+    "name": "Matt Hall",
+    "email": "bizear@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/matthewhall/matt-tabs.git"
+  },
+  "bugs": {
+    "url": "https://github.com/matthewhall/matt-tabs/issues"
+  },
+  "dependencies": {
+    "jquery": "1.7.0"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-jshint": "~0.6",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-jasmine": "~0.5.1",
+    "grunt-contrib-clean": "~0.5.0"
+  },
+  "keywords": []
 }

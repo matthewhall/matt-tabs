@@ -1,9 +1,6 @@
 module.exports = function (grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		meta: {
-			banner: '/*! <%= pkg.title || pkg.name %> v<%= pkg.version %> | <%= pkg.homepage && pkg.homepage %> */'
-		},
 		jasmine: {
 			src: 'src/js/mtabs.js',
 			options: {
@@ -28,18 +25,23 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-		min: {
+		uglify: {
+			options: {
+				banner: '/*! <%= pkg.title || pkg.name %> v<%= pkg.version %> | <%= pkg.homepage && pkg.homepage %> */\n'
+			},
 			dist: {
-				src: ['<banner:meta.banner>', '<file_strip_banner:src/js/<%= pkg.name %>.js>'],
-				dest: 'src/js/<%= pkg.name %>.<%= pkg.version %>.min.js'
+				files: {
+					'src/js/<%= pkg.name %>.<%= pkg.version %>.min.js': ['src/js/mtabs.js']
+				}
 			}
-		},
-		// uglify: {}
+		}
 	});
 
 	grunt.loadNpmTasks('grunt-contrib-jshint');
 	grunt.loadNpmTasks('grunt-contrib-jasmine');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
 
 	grunt.registerTask('test', ['jshint', 'jasmine']);
-	grunt.registerTask('default', ['jshint', 'jasmine']);
+	grunt.registerTask('min', ['uglify']);
+	grunt.registerTask('default', ['jshint', 'jasmine', 'uglify']);
 };

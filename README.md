@@ -83,6 +83,7 @@ $('.container').mtabs('destroy');
 * **tabsmenu_el**: Specifies element to use as a wrapper for tabs menu items. Default is a `ul` element.
 * **tmpl**: Templates used for building HTML structures.
 * **onTabSelect**: Optional callback function to be executed when tab switch occurs. Receives the index of the selected tab as an argument. Default is no callback.
+* **onReady**: Optional callback function executed when Matt Tabs setup is complete.
 
 ## Requires
 * jQuery 1.7+

@@ -44,3 +44,26 @@
 	border-bottom: 0;
 	padding-bottom: 7px;
 }
+
+/* Use CSS3 transitions */
+
+.set-3 .tabs-content {
+	position: relative;
+}
+
+.set-3 .panel {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	box-sizing: border-box;
+	z-index: 1;
+	opacity: 0;
+	transition: opacity 0.4s ease-out;
+}
+
+.set-3 .panel.active-tab {
+	opacity: 1;
+	position: relative;
+	z-index: 2;
+}

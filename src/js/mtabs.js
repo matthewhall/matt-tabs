@@ -187,6 +187,7 @@
 		tab_text_el: 'h1, h2, h3, h4, h5, h6', // Specifies element to generate the text from for each tab name.
 		tabsmenu_class: 'tabs-menu', // Specifies class name(s) applied to the tabs menu element.
 		tabsmenu_el: 'ul', // Specifies element to use as a wrapper for tabs menu items.
+		useCss: false, // Disables .hide() and .show() methods for tabs and simply adds the active class only.
 		tmpl: { // Templates used for building HTML structures. {0}: index of the menu item; {1}: Menu item text
 			tabsmenu_tab: '<li class="tab-{0}"><span>{1}</span></li>'
 		},

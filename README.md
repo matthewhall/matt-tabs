@@ -81,6 +81,7 @@ $('.container').mtabs('destroy');
 * **tab_text_el**: Specifies element to generate the text from for each tab name. Default is the first `h1-6` element within each element.
 * **tabmenu_class**: Specifies class name(s) applied to the tabs menu element. Default is `tabs-menu`.
 * **tabsmenu_el**: Specifies element to use as a wrapper for tabs menu items. Default is a `ul` element.
+* **useCss**: Disables `.hide()` and `.show()` methods for tabs and simply adds the active class only.
 * **tmpl**: Templates used for building HTML structures.
 * **onTabSelect**: Optional callback function to be executed when tab switch occurs. Receives the index of the selected tab as an argument. Default is no callback.
 * **onReady**: Optional callback function executed when Matt Tabs setup is complete.

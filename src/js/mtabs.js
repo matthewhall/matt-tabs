@@ -129,9 +129,12 @@
 				active_tab_class = opts.active_tab_class;
 
 			// Show the relevant tab content.
-			self.tabs.hide().filter(':eq(' + idx + ')').show();
+			if (!opts.useCss) {
+				self.tabs.hide().filter(':eq(' + idx + ')').show();
+			}
 
 			// Switch tab class names.
+			self.tabs.removeClass(active_tab_class).filter(':eq(' + idx + ')').addClass(active_tab_class);
 			self.$tabs_menu.children().removeClass(active_tab_class).filter(':eq(' + idx + ')').addClass(active_tab_class);
 
 			// Fire callback if defined and current tab has changed.

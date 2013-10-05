@@ -59,6 +59,25 @@
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
 				</div>
 			</div>
+
+			<h2>Toggle tabs with CSS transitions</h2>
+
+			<div class="set set-3">
+				<div class="panel panel-1">
+					<h2>Panel 1</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+				</div>
+
+				<div class="panel panel-2">
+					<h2>Panel 2</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+				</div>
+
+				<div class="panel panel-3">
+					<h2>Panel 3</h2>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+				</div>
+			</div>
 		</div>
 		
 		<script src="js/libs/jquery.1.7.0.min.js"></script>
@@ -75,6 +94,10 @@
 					onReady: function () {
 						console.log('Set 2 ready!');
 					}
+				});
+
+				$(".set-3").mtabs({
+					useCss: true
 				});
 
 				$('.set-1 .panel-1 .btn').on('click', function(event) {

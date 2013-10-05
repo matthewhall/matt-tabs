@@ -148,12 +148,13 @@
 		
 		destroy: function () {
 			var self = this,
-				name_selector = self.options.tab_text_el;
+				name_selector = self.options.tab_text_el,
+				active_tab_class = self.options.active_tab_class;
 
 			self.$tabs_menu.remove();
 			self.tabs.unwrap().unwrap();
 
-			self.tabs.removeAttr('style');
+			self.tabs.removeAttr('style').removeClass(active_tab_class);
 			self.tabs.children(name_selector + ':first').removeAttr('style');
 
 			self.$element.removeData('mtabs');

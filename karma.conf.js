@@ -14,7 +14,7 @@ module.exports = function(config) {
     // list of files / patterns to load in the browser
     files: [
         {pattern: 'src/js/mtabs.js', watched: true, served: true, included: true},
-        {pattern: 'tests/spec/*-spec.js', watched: true, served: true, included: true}
+        {pattern: 'tests/spec/*.spec.js', watched: true, served: true, included: true}
     ],
 
 

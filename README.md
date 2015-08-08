@@ -5,7 +5,7 @@ A simple, unobtrusive jQuery plugin for creating tabbed interfaces.
 View the [demo](http://meta-graphical.com/github/demos/matt-tabs).
 
 ## Build
-[Build](https://travis-ci.org/matthewhall/matt-tabs.svg?branch=master)
+![Build](https://travis-ci.org/matthewhall/matt-tabs.svg?branch=master)
 
 ## Usage
 Matt Tabs tries to be as lightweight and unobtrusive as possible. As such, it doesn't require any additional HTML to be added into your markup to use for a tabs menu. Instead, when `mtabs` is applied to an element it will use pre-existing markup for the tab text and then will build and insert all the HTML it needs.

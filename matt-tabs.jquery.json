@@ -21,8 +21,8 @@
 	"bugs": "https://github.com/matthewhall/matt-tabs/issues",
 	"licenses": [
 		{
-			"type": "MIT",
-			"url": "http://opensource.org/licenses/mit"
+			"type": "WTFPL",
+			"url": "http://www.wtfpl.net/"
 		}
 	],
 	"dependencies": {

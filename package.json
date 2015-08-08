@@ -4,6 +4,7 @@
   "description": "A simple, unobtrusive jQuery plugin for creating tabbed interfaces.",
   "version": "2.2.1",
   "homepage": "https://github.com/matthewhall/matt-tabs",
+  "license": "WTFPL",
   "author": {
     "name": "Matt Hall",
     "email": "bizear@gmail.com"

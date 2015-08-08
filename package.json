@@ -31,5 +31,11 @@
     "karma-phantomjs-launcher": "^0.2.1",
     "phantomjs": "^1.9.17"
   },
-  "keywords": []
+  "keywords": [
+    "tabs",
+    "ui",
+    "navigation",
+    "collapse",
+    "expand"
+  ]
 }

@@ -72,7 +72,7 @@ describe('Matt Tabs spec', function () {
 			});
 		});
 
-		it('Should apply a click event to each tab item in the menu', function () {
+		xit('Should apply a click event to each tab item in the menu', function () {
 			var spy,
 				$menuItems;
 

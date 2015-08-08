@@ -1,106 +1,106 @@
 <!DOCTYPE html>
 
 <html lang="en-gb" dir="ltr">
-	<head>
-		<meta charset="utf-8" />
-		<title>Matt Tabs Demo</title>
-		
-		<link rel="stylesheet" href="css/base.css" />
-		<link rel="stylesheet" href="css/styles.css" />
-	</head>
-	<body>
-		<div class="wrap">
-			<h1>Matt Tabs</h1>
-			<p>A simple jQuery plugin for creating tabbed interfaces.</p>
-			
-			<h2>Basic tabs example</h2>
-			
-			<div class="set set-1">
-				<div class="panel panel-1">
-					<h2>Panel 1</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<button class="btn">Show tab 3</button>
-					<button class="destroy">Destroy</button>
-					<button class="apply">Apply</button>
-				</div>
-			
-				<div class="panel panel-2">
-					<h2>Panel 2</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-				</div>
-			
-				<div class="panel panel-3">
-					<h2>Panel 3</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-				</div>
-			
-				<div class="panel panel-4">
-					<h2>Panel 4</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-				</div>
-			</div>
-			
-			<h2>With callback on tab select</h2>
-			
-			<div class="set set-2">
-				<div class="panel panel-1">
-					<header class="heading">Panel 1</header>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-					<button class="btn">Show tab 2</button>
-				</div>
-			
-				<div class="panel panel-2">
-					<header class="head">Panel 2</header>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-				</div>
-			
-				<div class="panel panel-3">
-					<header class="h1">Panel 3</header>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-				</div>
-			</div>
-		</div>
-		
-		<script src="js/libs/jquery.1.7.0.min.js"></script>
-		<script src="js/mtabs.js"></script>
-		<script>
-			$(function() {
-				$(".set-1").mtabs();
-				
-				$(".set-2").mtabs({
-					tab_text_el: ".heading, .head, header",
-					onTabSelect: function(idx) {
-						console.log("Selected tab is: " + idx);
-					},
-					onReady: function () {
-						console.log('Set 2 ready!');
-					}
-				});
+  <head>
+    <meta charset="utf-8" />
+    <title>Matt Tabs Demo</title>
 
-				$('.set-1 .panel-1 .btn').on('click', function(event) {
-					$('.set-1').mtabs('show', 2);
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <div class="wrap">
+      <h1>Matt Tabs</h1>
+      <p>A simple jQuery plugin for creating tabbed interfaces.</p>
 
-					event.preventDefault();
-				});
+      <h2>Basic tabs example</h2>
 
-				$('.set-1 .panel-1 .destroy').on('click', function(event) {
-					$('.set-1').mtabs('destroy');
+      <div class="set set-1">
+        <div class="panel panel-1">
+          <h2>Panel 1</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <button class="btn">Show tab 3</button>
+          <button class="destroy">Destroy</button>
+          <button class="apply">Apply</button>
+        </div>
 
-					event.preventDefault();
-				});
+        <div class="panel panel-2">
+          <h2>Panel 2</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
 
-				$('.set-1 .panel-1 .apply').on('click', function(event) {
-					$('.set-1').mtabs();
+        <div class="panel panel-3">
+          <h2>Panel 3</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
 
-					event.preventDefault();
-				});
+        <div class="panel panel-4">
+          <h2>Panel 4</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+      </div>
 
-				$('.set-2 .panel-1 .btn').on('click', function(event) {
-					$('.set-2').mtabs('show', 1);
+      <h2>With callback on tab select</h2>
 
-					event.preventDefault();
-				});
-			});
-		</script>
-	</body>
+      <div class="set set-2">
+        <div class="panel panel-1">
+          <header class="heading">Panel 1</header>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+          <button class="btn">Show tab 2</button>
+        </div>
+
+        <div class="panel panel-2">
+          <header class="head">Panel 2</header>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+
+        <div class="panel panel-3">
+          <header class="h1">Panel 3</header>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/libs/jquery.1.7.0.min.js"></script>
+    <script src="js/mtabs.js"></script>
+    <script>
+      $(function() {
+        $(".set-1").mtabs();
+
+        $(".set-2").mtabs({
+          tab_text_el: ".heading, .head, header",
+          onTabSelect: function(idx) {
+            console.log("Selected tab is: " + idx);
+          },
+          onReady: function () {
+            console.log('Set 2 ready!');
+          }
+        });
+
+        $('.set-1 .panel-1 .btn').on('click', function(event) {
+          $('.set-1').mtabs('show', 2);
+
+          event.preventDefault();
+        });
+
+        $('.set-1 .panel-1 .destroy').on('click', function(event) {
+          $('.set-1').mtabs('destroy');
+
+          event.preventDefault();
+        });
+
+        $('.set-1 .panel-1 .apply').on('click', function(event) {
+          $('.set-1').mtabs();
+
+          event.preventDefault();
+        });
+
+        $('.set-2 .panel-1 .btn').on('click', function(event) {
+          $('.set-2').mtabs('show', 1);
+
+          event.preventDefault();
+        });
+      });
+    </script>
+  </body>
 </html>

@@ -1,46 +1,46 @@
 /*
-	Structure
-	--------------------------------------------------
+  Structure
+  --------------------------------------------------
 */
 
 .wrap {
-	margin: 20px auto;
-	width: 50%;
+  margin: 20px auto;
+  width: 50%;
 }
 
 .set,
 .panel {
-	margin: 0 0 10px;
+  margin: 0 0 10px;
 }
 
 
 /*
-	Tabs
-	--------------------------------------------------
+  Tabs
+  --------------------------------------------------
 */
 
 .tabs .panel {padding: 10px;}
 
 .tabs-menu {
-	border-bottom: 1px solid #ccc;
-	padding: 0 10px;
+  border-bottom: 1px solid #ccc;
+  padding: 0 10px;
 }
 
 .tabs-menu li {
-	display: inline-block;
-	*display: inline;
-	zoom: 1;
-	margin: 0 3px -1px 0;
-	border: 1px solid #ccc;
-	border-radius: 3px 3px 0 0;
-	padding: 6px 12px;
-	background-color: #ededed;
-	cursor: pointer;
-	position: relative;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+  margin: 0 3px -1px 0;
+  border: 1px solid #ccc;
+  border-radius: 3px 3px 0 0;
+  padding: 6px 12px;
+  background-color: #ededed;
+  cursor: pointer;
+  position: relative;
 }
 
 .tabs-menu .active-tab {
-	background-color: #fff;
-	border-bottom: 0;
-	padding-bottom: 7px;
+  background-color: #fff;
+  border-bottom: 0;
+  padding-bottom: 7px;
 }

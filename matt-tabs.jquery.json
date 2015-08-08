@@ -1,30 +1,30 @@
 {
-	"name": "matt-tabs",
-	"title": "jQuery Matt Tabs",
-	"description": "A simple, unobtrusive jQuery plugin for creating tabbed interfaces.",
-	"keywords": [
-		"tabs",
-		"ui",
-		"navigation",
-		"collapse",
-		"expand"
-	],
-	"version": "2.2.1",
-	"author": {
-		"name": "Matt Hall",
-		"email": "bizear@gmail.com"
-	},
-	"homepage": "https://github.com/matthewhall/matt-tabs",
-	"demo": "http://meta-graphical.com/github/demos/matt-tabs",
-	"download": "https://raw.github.com/matthewhall/matt-tabs/master/src/js/mtabs.2.2.1.min.js",
-	"bugs": "https://github.com/matthewhall/matt-tabs/issues",
-	"licenses": [
-		{
-			"type": "WTFPL",
-			"url": "http://www.wtfpl.net/"
-		}
-	],
-	"dependencies": {
-		"jquery": ">=1.7"
-	}
+  "name": "matt-tabs",
+  "title": "jQuery Matt Tabs",
+  "description": "A simple, unobtrusive jQuery plugin for creating tabbed interfaces.",
+  "keywords": [
+    "tabs",
+    "ui",
+    "navigation",
+    "collapse",
+    "expand"
+  ],
+  "version": "2.2.1",
+  "author": {
+    "name": "Matt Hall",
+    "email": "bizear@gmail.com"
+  },
+  "homepage": "https://github.com/matthewhall/matt-tabs",
+  "demo": "http://meta-graphical.com/github/demos/matt-tabs",
+  "download": "https://raw.github.com/matthewhall/matt-tabs/master/src/js/mtabs.2.2.1.min.js",
+  "bugs": "https://github.com/matthewhall/matt-tabs/issues",
+  "licenses": [
+    {
+      "type": "WTFPL",
+      "url": "http://www.wtfpl.net/"
+    }
+  ],
+  "dependencies": {
+    "jquery": ">=1.7"
+  }
 }

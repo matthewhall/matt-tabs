@@ -1,195 +1,195 @@
 /*!
-	Matt Tabs v2.2.1
-	A simple jQuery plugin for creating tabbed interfaces.
-	
-	https://github.com/matthewhall/matt-tabs
+  Matt Tabs v2.2.1
+  A simple jQuery plugin for creating tabbed interfaces.
+
+  https://github.com/matthewhall/matt-tabs
 */
 
 ;(function ($, window, document, undefined) {
-	"use strict";
+  "use strict";
 
-	var MattTabs = function (element, options) {
-		var self = this;
+  var MattTabs = function (element, options) {
+    var self = this;
 
-		self.element = element;
-		self.$element = $(element);
-		self.tabs = self.$element.children();
-		self.options = $.extend({}, $.fn.mtabs.defaults, options);
-		self.current_tab = 0;
+    self.element = element;
+    self.$element = $(element);
+    self.tabs = self.$element.children();
+    self.options = $.extend({}, $.fn.mtabs.defaults, options);
+    self.current_tab = 0;
 
-		self.init();
-	};
+    self.init();
+  };
 
-	MattTabs.prototype = {
-		init: function () {
-			var self = this;
-			
-			if (self.tabs.length) {
-				// Build.
-				self.build();
-				self.buildTabMenu();
-			}
-		},
+  MattTabs.prototype = {
+    init: function () {
+      var self = this;
 
-		build: function () {
-			var self = this,
-				opts = self.options,
-				tab_text_el = opts.tab_text_el,
-				container_class = opts.container_class;
+      if (self.tabs.length) {
+        // Build.
+        self.build();
+        self.buildTabMenu();
+      }
+    },
 
-			// Array to collect tab names.
-			self.tab_names = [];
+    build: function () {
+      var self = this,
+        opts = self.options,
+        tab_text_el = opts.tab_text_el,
+        container_class = opts.container_class;
 
-			// Wrap everything in a container element.
-			self.$wrapper = self.$element.wrapInner('<div class="' + container_class + '" />').find('.' + container_class);
+      // Array to collect tab names.
+      self.tab_names = [];
 
-			// Wrap all tabs in a container element.
-			self.tabs.wrapAll('<div class="' + opts.tabs_container_class + '" />');
+      // Wrap everything in a container element.
+      self.$wrapper = self.$element.wrapInner('<div class="' + container_class + '" />').find('.' + container_class);
 
-			self.tabs.each(function (idx, element) {
-				var name,
-					$element = $(element),
-					name_selector = tab_text_el;
+      // Wrap all tabs in a container element.
+      self.tabs.wrapAll('<div class="' + opts.tabs_container_class + '" />');
 
-				// Use the set element for the tab text or get
-				// the first heading element and use that.
-				name = $element.find(name_selector).filter(':first').hide().text();
+      self.tabs.each(function (idx, element) {
+        var name,
+          $element = $(element),
+          name_selector = tab_text_el;
 
-				self.tab_names.push(name);
-			});
+        // Use the set element for the tab text or get
+        // the first heading element and use that.
+        name = $element.find(name_selector).filter(':first').hide().text();
 
-			if ($.isFunction(opts.onReady)) {
-				opts.onReady.call(self.element);
-			}
-		},
+        self.tab_names.push(name);
+      });
 
-		// Generates the HTML markup for the tabs menu and
-		// appends it to the relevant page of the page.
-		buildTabMenu: function () {
-			var self = this,
-				opts = self.options,
-				element = opts.tabsmenu_el,
-				tab_names = self.tab_names,
-				html = '<' + element + ' class="' + opts.tabsmenu_class + '">',
-				i = 0,
-				len = tab_names.length,
-				child_node_name,
+      if ($.isFunction(opts.onReady)) {
+        opts.onReady.call(self.element);
+      }
+    },
 
-				// Private func to build the tab HTML.
-				buildMenuHTML = function () {
-					var args = arguments;
+    // Generates the HTML markup for the tabs menu and
+    // appends it to the relevant page of the page.
+    buildTabMenu: function () {
+      var self = this,
+        opts = self.options,
+        element = opts.tabsmenu_el,
+        tab_names = self.tab_names,
+        html = '<' + element + ' class="' + opts.tabsmenu_class + '">',
+        i = 0,
+        len = tab_names.length,
+        child_node_name,
 
-					// Replace any {0} placeholders with any text passed in as arguments.
-					return opts.tmpl.tabsmenu_tab.replace(/\{[0-9]\}/g, function (str) {
-						// Replace non-numeric chars and convert to number.
-						var num = Number(str.replace(/\D/g, ''));
+        // Private func to build the tab HTML.
+        buildMenuHTML = function () {
+          var args = arguments;
 
-						// Return the relevant string from the args array based
-						// on the placeholder number we're currently replacing.
-						return args[num] || '';
-					});
-				};
+          // Replace any {0} placeholders with any text passed in as arguments.
+          return opts.tmpl.tabsmenu_tab.replace(/\{[0-9]\}/g, function (str) {
+            // Replace non-numeric chars and convert to number.
+            var num = Number(str.replace(/\D/g, ''));
 
-			for (; i < len; i++) {
-				// Build HTML for each tab passing in the idx and the name.
-				html += buildMenuHTML((i + 1), tab_names[i]);
-			}
+            // Return the relevant string from the args array based
+            // on the placeholder number we're currently replacing.
+            return args[num] || '';
+          });
+        };
 
-			// Close the container.
-			html += '</' + element + '>';
+      for (; i < len; i++) {
+        // Build HTML for each tab passing in the idx and the name.
+        html += buildMenuHTML((i + 1), tab_names[i]);
+      }
 
-			// Append it before the element and assign
-			// to the prototype chain for use later.
-			self.$tabs_menu = $(html).prependTo(self.$wrapper);
+      // Close the container.
+      html += '</' + element + '>';
 
-			// Get nodeName of the tab menu children
-			// so we can delegate the click event to them.
-			child_node_name = self.$tabs_menu.find(':first')[0].nodeName.toLowerCase();
+      // Append it before the element and assign
+      // to the prototype chain for use later.
+      self.$tabs_menu = $(html).prependTo(self.$wrapper);
 
-			// Delegate click evens to each tab.
-			self.$tabs_menu.on('click', child_node_name, function (e) {
-					var $this = $(this),
-						// Use the tab's index to associate it with it's content.
-						idx = $this.index();
+      // Get nodeName of the tab menu children
+      // so we can delegate the click event to them.
+      child_node_name = self.$tabs_menu.find(':first')[0].nodeName.toLowerCase();
 
-					// Select the tab.
-					self.show(idx);
+      // Delegate click evens to each tab.
+      self.$tabs_menu.on('click', child_node_name, function (e) {
+          var $this = $(this),
+            // Use the tab's index to associate it with it's content.
+            idx = $this.index();
 
-					// Just in case an a element has been supplied as a template.
-					e.preventDefault();
-				})
-				// Select and show the first tab.
-				.find(':first').trigger('click');
-		},
+          // Select the tab.
+          self.show(idx);
 
-		// Toggle tab passing the relevant index
-		show: function (idx) {
-			var self = this,
-				opts = self.options,
-				active_tab_class = opts.active_tab_class;
+          // Just in case an a element has been supplied as a template.
+          e.preventDefault();
+        })
+        // Select and show the first tab.
+        .find(':first').trigger('click');
+    },
 
-			// Show the relevant tab content.
-			self.tabs.hide().filter(':eq(' + idx + ')').show();
+    // Toggle tab passing the relevant index
+    show: function (idx) {
+      var self = this,
+        opts = self.options,
+        active_tab_class = opts.active_tab_class;
 
-			// Switch tab class names.
-			self.$tabs_menu.children().removeClass(active_tab_class).filter(':eq(' + idx + ')').addClass(active_tab_class);
+      // Show the relevant tab content.
+      self.tabs.hide().filter(':eq(' + idx + ')').show();
 
-			// Fire callback if defined and current tab has changed.
-			if ($.isFunction(opts.onTabSelect) && idx !== self.current_tab) {
-				opts.onTabSelect.call(self.element, idx);
-			}
+      // Switch tab class names.
+      self.$tabs_menu.children().removeClass(active_tab_class).filter(':eq(' + idx + ')').addClass(active_tab_class);
 
-			// Update current tab reference.
-			self.current_tab = idx;
-		},
-		
-		destroy: function () {
-			var self = this,
-				name_selector = self.options.tab_text_el;
+      // Fire callback if defined and current tab has changed.
+      if ($.isFunction(opts.onTabSelect) && idx !== self.current_tab) {
+        opts.onTabSelect.call(self.element, idx);
+      }
 
-			self.$tabs_menu.remove();
-			self.tabs.unwrap().unwrap();
+      // Update current tab reference.
+      self.current_tab = idx;
+    },
 
-			self.tabs.removeAttr('style');
-			self.tabs.children(name_selector + ':first').removeAttr('style');
+    destroy: function () {
+      var self = this,
+        name_selector = self.options.tab_text_el;
 
-			self.$element.removeData('mtabs');
-		}
-	};
+      self.$tabs_menu.remove();
+      self.tabs.unwrap().unwrap();
 
-	// Add to $.fn namespace.
-	$.fn.mtabs = function (options, idx) {
-		return this.each(function () {
-			var $this = $(this),
-				data = $this.data('mtabs'),
-				opts;
+      self.tabs.removeAttr('style');
+      self.tabs.children(name_selector + ':first').removeAttr('style');
 
-			opts = typeof options === 'object' && options;
+      self.$element.removeData('mtabs');
+    }
+  };
 
-			// Check if mtabs has already been applied.
-			if (!data) {
-				// Initialise new instance of MattTabs.
-				$this.data('mtabs', (data = new MattTabs(this, opts)));
-			}
+  // Add to $.fn namespace.
+  $.fn.mtabs = function (options, idx) {
+    return this.each(function () {
+      var $this = $(this),
+        data = $this.data('mtabs'),
+        opts;
 
-			// Check for method invocation
-			if (typeof options === 'string') {
-				data[options](idx);
-			}
-		});
-	};
+      opts = typeof options === 'object' && options;
 
-	// Default options.
-	$.fn.mtabs.defaults = {
-		container_class: 'tabs', // Specifies class name(s) applied to the overall wrapping element.
-		tabs_container_class: 'tabs-content', // Specifies class name(s) applied to tabs content wrapping element.
-		active_tab_class: 'active-tab', // Specifies class name for currently active tab.
-		tab_text_el: 'h1, h2, h3, h4, h5, h6', // Specifies element to generate the text from for each tab name.
-		tabsmenu_class: 'tabs-menu', // Specifies class name(s) applied to the tabs menu element.
-		tabsmenu_el: 'ul', // Specifies element to use as a wrapper for tabs menu items.
-		tmpl: { // Templates used for building HTML structures. {0}: index of the menu item; {1}: Menu item text
-			tabsmenu_tab: '<li class="tab-{0}"><span>{1}</span></li>'
-		},
-		onTabSelect: null // Optional callback function to be executed when tab switch occurs. Receives the index of the selected tab as an argument. Default is no callback.
-	};
+      // Check if mtabs has already been applied.
+      if (!data) {
+        // Initialise new instance of MattTabs.
+        $this.data('mtabs', (data = new MattTabs(this, opts)));
+      }
+
+      // Check for method invocation
+      if (typeof options === 'string') {
+        data[options](idx);
+      }
+    });
+  };
+
+  // Default options.
+  $.fn.mtabs.defaults = {
+    container_class: 'tabs', // Specifies class name(s) applied to the overall wrapping element.
+    tabs_container_class: 'tabs-content', // Specifies class name(s) applied to tabs content wrapping element.
+    active_tab_class: 'active-tab', // Specifies class name for currently active tab.
+    tab_text_el: 'h1, h2, h3, h4, h5, h6', // Specifies element to generate the text from for each tab name.
+    tabsmenu_class: 'tabs-menu', // Specifies class name(s) applied to the tabs menu element.
+    tabsmenu_el: 'ul', // Specifies element to use as a wrapper for tabs menu items.
+    tmpl: { // Templates used for building HTML structures. {0}: index of the menu item; {1}: Menu item text
+      tabsmenu_tab: '<li class="tab-{0}"><span>{1}</span></li>'
+    },
+    onTabSelect: null // Optional callback function to be executed when tab switch occurs. Receives the index of the selected tab as an argument. Default is no callback.
+  };
 }(window.jQuery, window, document));

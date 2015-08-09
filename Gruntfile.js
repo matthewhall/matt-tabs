@@ -2,15 +2,6 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    jasmine: {
-      src: 'src/js/mtabs.js',
-      options: {
-        vendor: 'src/js/libs/*.js',
-        helpers: 'tests/jasmine/lib/jasmine-jquery.js',
-        specs: 'tests/jasmine/spec/**/*.js'
-      }
-    },
-
     jshint: {
       files: [
         'Gruntfile.js',
@@ -43,10 +34,8 @@ module.exports = function (grunt) {
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-uglify');
 
-  grunt.registerTask('test', ['jshint', 'jasmine']);
   grunt.registerTask('min', ['uglify']);
-  grunt.registerTask('default', ['jshint', 'jasmine', 'uglify']);
+  grunt.registerTask('default', ['jshint', 'uglify']);
 };

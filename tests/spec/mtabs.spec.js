@@ -72,19 +72,6 @@ describe('Matt Tabs spec', function () {
       });
     });
 
-    xit('Should apply a click event to each tab item in the menu', function () {
-      var spy,
-        $menuItems;
-
-      $container.mtabs();
-      $menuItems = $container.find('.tabs-menu').children();
-
-      spy = spyOnEvent($menuItems, 'click');
-      $menuItems.filter(':last').trigger('click');
-
-      expect(spy).toHaveBeenTriggered();
-    });
-
     it('Should switch the "active-tab" class to the relevant tab menu item when it is clicked', function () {
       var $menuItems;
 
